@@ -1,0 +1,37 @@
+Node.js v22.17.1
+Server listening on port 80
+Initializing Discord bot...
+Connected to guild: what
+Found existing subscriber role: Subscriber
+Found existing subscriber category: Subscribers-Only
+Updated subscriber category permissions
+Syncing subscriber roles...
+Starting subscriber role sync...
+Found 0 active subscribers, 0 with Discord usernames
+Failed to fetch active subscribers: Error: HTTP error! status: 401
+    at SubscriberBot.getActiveSubscribers (/app/public/src/bot.js:114:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async SubscriberBot.syncSubscriberRoles (/app/public/src/bot.js:134:39)
+    at async handler (/app/public/api/sync.js:20:24)
+    at async Server.<anonymous> (/app/easypanel-server.js:9:3)
+Sync complete: {
+  totalSubscribers: 0,
+  subscribersWithDiscord: 0,
+  rolesGranted: 0,
+  rolesRevoked: 0,
+  currentRoleHolders: 0
+}
+Cleaning up bot connection...
+Handler error: TypeError: res.status is not a function
+    at handler (/app/public/api/sync.js:23:20)
+    at async Server.<anonymous> (/app/easypanel-server.js:9:3)
+/app/public/api/sync.js:38
+        return res.status(500).json({
+                   ^
+
+TypeError: res.status is not a function
+    at handler (/app/public/api/sync.js:38:20)
+    at async Server.<anonymous> (/app/easypanel-server.js:9:3)
+
+Node.js v22.17.1
+Server listening on port 80

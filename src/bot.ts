@@ -125,8 +125,10 @@ export class SubscriberBot {
   }
 
   private async getActiveSubscribers(): Promise<Subscriber[]> {
+    const url = `${process.env.API_BASE_URL}/api/users/active-subscribers`;
+    console.log(`Fetching active subscribers from: ${url}`);
     try {
-      const response = await fetch(`${process.env.API_BASE_URL}/api/users/active-subscribers`, {
+      const response = await fetch(url, {
         headers: {
           'X-API-Key': process.env.DISCORD_BOT_API_KEY!,
           'Content-Type': 'application/json',
