@@ -2,10 +2,10 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 import { SubscriberBot } from '../src/bot';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Optional: Add authentication
-  const authHeader = req.headers.authorization;
-  if (authHeader !== `Bearer ${process.env.VERCEL_CRON_SECRET}`) {
-    return res.status(401).json({ error: 'Unauthorized' });
+  // Check API key
+  const apiKey = req.headers['x-api-key'];
+  if (apiKey !== process.env.DISCORD_BOT_API_KEY) {
+    return res.status(401).json({ error: 'Unauthorized - Invalid API Key' });
   }
 
   if (req.method !== 'POST') {
