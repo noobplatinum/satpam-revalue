@@ -26,8 +26,8 @@ COPY run-cron.sh entrypoint.sh /app/
 # Make scripts executable
 RUN chmod +x /app/run-cron.sh /app/entrypoint.sh
 
-# Add cron job
-RUN echo "*/15 * * * * /app/run-cron.sh >> /var/log/cron.log 2>&1" | crontab -
+# Add cron job to log to the container's stdout/stderr
+RUN echo "*/15 * * * * /app/run-cron.sh > /proc/1/fd/1 2>/proc/1/fd/2" | crontab -
 
 # Expose the port the app runs on
 EXPOSE 3000
