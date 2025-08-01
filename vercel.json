@@ -2,6 +2,9 @@
   "functions": {
     "api/sync.ts": {
       "maxDuration": 60
+    },
+    "api/manual-sync.ts": {
+      "maxDuration": 60
     }
   },
   "crons": [
