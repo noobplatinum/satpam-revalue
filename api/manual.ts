@@ -16,6 +16,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     console.log('Manual sync triggered...');
+    
+    const apiBaseUrl = process.env.API_BASE_URL;
+    console.log(`Fetching active subscribers from: ${apiBaseUrl}/api/users/active-subscribers`);
+
     await bot.initialize();
     
     const result = await bot.syncSubscriberRoles();
