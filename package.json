@@ -2,7 +2,7 @@
   "name": "discord-subscriber-bot",
   "version": "1.0.0",
   "description": "Discord bot for managing subscriber roles",
-  "main": "api/sync.ts",
+  "main": "public/api/sync.js",
   "scripts": {
     "dev": "vercel dev",
     "build": "tsc",

@@ -1,9 +1,9 @@
 {
   "functions": {
-    "api/sync.ts": {
+    "public/api/sync.js": {
       "maxDuration": 60
     },
-    "api/manual-sync.ts": {
+    "public/api/manual.js": {
       "maxDuration": 60
     }
   },
