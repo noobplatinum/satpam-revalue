@@ -1,7 +1,11 @@
 const http = require('http');
-const handler = require('./public/api/sync').default;
+const url = require('url');
+const syncHandler = require('./public/api/sync').default;
+const manualHandler = require('./public/api/manual').default;
 
 const server = http.createServer(async (req, res) => {
+  const parsedUrl = url.parse(req.url, true);
+  
   // Always add the required cron secret header for the handler.
   req.headers['vercel-cron-secret'] = process.env.VERCEL_CRON_SECRET;
   
@@ -18,7 +22,18 @@ const server = http.createServer(async (req, res) => {
     }
   };
   
-  await handler(req, vercelRes);
+  // Route requests based on path
+  if (parsedUrl.pathname === '/api/sync') {
+    await syncHandler(req, vercelRes);
+  } else if (parsedUrl.pathname === '/api/manual') {
+    await manualHandler(req, vercelRes);
+  } else if (parsedUrl.pathname === '/') {
+    // Health check endpoint for cron
+    await syncHandler(req, vercelRes);
+  } else {
+    res.statusCode = 404;
+    res.end('Not Found');
+  }
 });
 
 const port = process.env.PORT || 3000;
