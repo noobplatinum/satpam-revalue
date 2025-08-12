@@ -76,33 +76,8 @@ export class SubscriberBot {
     ) as CategoryChannel || null;
 
     if (!this.subscriberCategory) {
-      this.subscriberCategory = await this.guild.channels.create({
-        name: categoryName,
-        type: ChannelType.GuildCategory,
-        permissionOverwrites: [
-          {
-            id: this.guild.roles.everyone.id,
-            deny: [PermissionFlagsBits.ViewChannel],
-          },
-          {
-            id: this.subscriberRole.id,
-            allow: [
-              PermissionFlagsBits.ViewChannel,
-              PermissionFlagsBits.SendMessages,
-              PermissionFlagsBits.ReadMessageHistory,
-            ],
-          },
-        ],
-      });
-      console.log(`Created subscriber category: ${categoryName}`);
-
-      // Create a sample channel in the category
-      await this.guild.channels.create({
-        name: 'subscriber-chat',
-        type: ChannelType.GuildText,
-        parent: this.subscriberCategory.id,
-      });
-      console.log('Created sample subscriber chat channel');
+      console.log(`Subscriber category '${categoryName}' not found - please create it manually`);
+      return;
     } else {
       console.log(`Found existing subscriber category: ${categoryName}`);
       
